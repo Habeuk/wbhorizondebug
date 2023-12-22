@@ -1,0 +1,7 @@
+name: wbhorizondebug
+type: module
+description: Permet de faire du debuggage, correction et des tests, doit etre desactier en production.
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - lesroidelareno

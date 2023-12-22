@@ -1,0 +1,8 @@
+# Schema for the configuration files of the wbhorizondebug module.
+wbhorizondebug.settings:
+  type: config_object
+  label: 'wbhorizondebug settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

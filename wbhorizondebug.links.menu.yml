@@ -1,0 +1,6 @@
+wbhorizondebug.settings_form:
+  title: 'wbhorizondebug'
+  description: 'Configure wbhorizondebug.'
+  parent: system.admin_config_system
+  route_name: wbhorizondebug.settings_form
+  weight: 10
