@@ -12,52 +12,57 @@ use Symfony\Component\HttpKernel\KernelEvents;
  * wbhorizondebug event subscriber.
  */
 class WbhorizondebugSubscriber implements EventSubscriberInterface {
-
+  
   /**
    * The messenger.
    *
    * @var \Drupal\Core\Messenger\MessengerInterface
    */
   protected $messenger;
-
+  
   /**
    * Constructs event subscriber.
    *
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
-   *   The messenger.
+   *        The messenger.
    */
   public function __construct(MessengerInterface $messenger) {
     $this->messenger = $messenger;
   }
-
+  
   /**
    * Kernel request event handler.
    *
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
-   *   Response event.
+   *        Response event.
    */
   public function onKernelRequest(GetResponseEvent $event) {
-    $this->messenger->addStatus(__FUNCTION__);
+    $this->messenger->addStatus('Module debug activée.');
   }
-
+  
   /**
    * Kernel response event handler.
    *
    * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
-   *   Response event.
+   *        Response event.
    */
   public function onKernelResponse(FilterResponseEvent $event) {
-    $this->messenger->addStatus(__FUNCTION__);
+    // $this->messenger->addStatus(__FUNCTION__);
   }
-
+  
   /**
+   *
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
     return [
-      KernelEvents::REQUEST => ['onKernelRequest'],
-      KernelEvents::RESPONSE => ['onKernelResponse'],
+      KernelEvents::REQUEST => [
+        'onKernelRequest'
+      ],
+      KernelEvents::RESPONSE => [
+        'onKernelResponse'
+      ]
     ];
   }
-
+  
 }

@@ -1,10 +1,20 @@
 wbhorizondebug.example:
-  path: '/wbhorizondebug/example'
+  path: '/admin/wbhorizondebug/move-image/to-gallery-field'
   defaults:
-    _title: 'Example'
-    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::build'
+    _title: 'Move Image To Gallerie Field'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::MoveImageToGallerieField'
   requirements:
-    _permission: 'access content'
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
+    
+wbhorizondebug.getdisountproducts:
+  path: '/admin/wbhorizondebug/getdisountproducts'
+  defaults:
+    _title: 'Move Image To Gallerie Field'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::getDisountProducts'
+  requirements:
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
 
 wbhorizondebug.settings_form:
   path: '/admin/config/system/wbhorizondebug'
