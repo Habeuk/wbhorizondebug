@@ -1,8 +1,29 @@
+# On a constaté que certains blocks etaient malconfigurer. ils sont definit sur un domaine X et utilise un Theme Y.
+wbhorizondebug.update_block_theme_visibility:
+  path: '/admin/wbhorizondebug/update_block_theme_visibility/{action}'
+  defaults:
+    _title: 'Move lesroidelareno-domain_id wb_horizon_public-domain_id'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::update_block_theme_visibility'
+  requirements:
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
+
 wbhorizondebug.example:
   path: '/admin/wbhorizondebug/move-image/to-gallery-field'
   defaults:
     _title: 'Move Image To Gallerie Field'
     _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::MoveImageToGallerieField'
+  requirements:
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
+
+#permet de deplacer third_party_settings.lesroidelareno.domain_id vers third_party_settings.wb_horizon_public.domain_id
+# car le module lesroidelareno n'est pas un module client.
+wbhorizondebug.update_entity_menu:
+  path: '/admin/wbhorizondebug/move-lesroidelareno-domain_id/wb_horizon_public-domain_id'
+  defaults:
+    _title: 'Move lesroidelareno-domain_id wb_horizon_public-domain_id'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::MoveLesroidelarenoWb_horizon_publicDomain_id'
   requirements:
     _role: 'administrator'
     _permission: 'administer wbhorizondebug configuration'
