@@ -34,7 +34,7 @@ class WbhorizondebugController extends ControllerBase {
    * 'field_gallery' dans le produit type de vetement: vetements.
    */
   public function MoveImageToGallerieField() {
-    $date = new DrupalDateTime('2023-12-01');
+    $date = new DrupalDateTime('2023-01-01');
     $query = $this->entityTypeManager()->getStorage('commerce_product')->getQuery();
     $query->condition('created', $date->getTimestamp(), '>');
     $ids = $query->execute();
