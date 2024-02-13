@@ -6,11 +6,30 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\system\Entity\Menu;
 use Drupal\Core\Url;
+use Stephane888\DrupalUtility\HttpResponse;
 
 /**
  * Returns responses for wbhorizondebug routes.
  */
 class WbhorizondebugController extends ControllerBase {
+  
+  /**
+   * Permet de retourner l'entité sous forme de json tout en tenant compte de la
+   * definition au niveau des paragraphes.
+   *
+   * @param string $entity_type
+   * @param string $id
+   */
+  public function getJsonEntity($entity_type_id, $id) {
+    $result = [];
+    $code = 435;
+    $entity = $this->entityTypeManager()->getStorage($entity_type_id)->load($id);
+    if ($entity) {
+      $code = 200;
+      $result = $entity->toArray();
+    }
+    return HttpResponse::response($result, $code);
+  }
   
   /**
    * Certains blocs ont une visibite defini su un domaine X mais utilise un

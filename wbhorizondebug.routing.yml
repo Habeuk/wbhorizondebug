@@ -1,3 +1,13 @@
+# recupere le json d'un contenu'.
+wbhorizondebug.get_json_entity:
+  path: '/admin/wbhorizondebug/get-json/{entity_type_id}/{id}'
+  defaults:
+    _title: 'Move Image To Gallerie Field'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::getJsonEntity'
+  requirements:
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
+
 # On a constaté que certains blocks etaient malconfigurer. ils sont definit sur un domaine X et utilise un Theme Y.
 wbhorizondebug.update_block_theme_visibility:
   path: '/admin/wbhorizondebug/update_block_theme_visibility/{action}'
@@ -7,8 +17,9 @@ wbhorizondebug.update_block_theme_visibility:
   requirements:
     _role: 'administrator'
     _permission: 'administer wbhorizondebug configuration'
-
-wbhorizondebug.example:
+    
+# Permet de deplacer l'image du champs 'image' vers le champs 'gallery-field'.
+wbhorizondebug.mode_image:
   path: '/admin/wbhorizondebug/move-image/to-gallery-field'
   defaults:
     _title: 'Move Image To Gallerie Field'
@@ -16,8 +27,9 @@ wbhorizondebug.example:
   requirements:
     _role: 'administrator'
     _permission: 'administer wbhorizondebug configuration'
+    
 
-#permet de deplacer third_party_settings.lesroidelareno.domain_id vers third_party_settings.wb_horizon_public.domain_id
+# permet de deplacer third_party_settings.lesroidelareno.domain_id vers third_party_settings.wb_horizon_public.domain_id
 # car le module lesroidelareno n'est pas un module client.
 wbhorizondebug.update_entity_menu:
   path: '/admin/wbhorizondebug/move-lesroidelareno-domain_id/wb_horizon_public-domain_id'
@@ -44,3 +56,11 @@ wbhorizondebug.settings_form:
     _form: 'Drupal\wbhorizondebug\Form\SettingsForm'
   requirements:
     _permission: 'administer wbhorizondebug configuration'
+
+wbhorizondebug.import_content_by_json:
+  path: '/admin/wbhorizondebug/import-content-by-json'
+  defaults:
+    _title: 'Import content by json'
+    _form: 'Drupal\wbhorizondebug\Form\ImportContentByJsonForm'
+  requirements:
+    _permission: 'access content'

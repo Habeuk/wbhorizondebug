@@ -1,8 +1,26 @@
 <?php
 
 /**
+ * On a beaucoup de hook qui s'execute ce qui n'est pas forcement ideale.
+ *
  * @file
  * Primary module hooks for wbhorizondebug module.
  */
-
-
+function wbhorizondebug_module_implements_alter(&$implementations, $hook) {
+  // \Stephane888\Debug\debugLog::$max_depth = 2;
+  // \Stephane888\Debug\debugLog::kintDebugDrupal($implementations, $hook);
+  
+  // if ($implementations) {
+  // dump($hook, $implementations);
+  // $ignore_hooks = [
+  // 'entity_view_display_presave',
+  // 'entity_presave'
+  // ];
+  
+  // if (in_array($hook, $ignore_hooks)) {
+  // // if (isset($implementations['layoutgenentitystyles'])) {
+  // // unset($implementations['layoutgenentitystyles']);
+  // // }
+  // }
+  // }
+}
