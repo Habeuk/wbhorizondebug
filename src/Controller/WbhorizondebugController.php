@@ -12,7 +12,7 @@ use Stephane888\DrupalUtility\HttpResponse;
  * Returns responses for wbhorizondebug routes.
  */
 class WbhorizondebugController extends ControllerBase {
-  
+
   /**
    * Permet de retourner l'entité sous forme de json tout en tenant compte de la
    * definition au niveau des paragraphes.
@@ -30,7 +30,7 @@ class WbhorizondebugController extends ControllerBase {
     }
     return HttpResponse::response($result, $code);
   }
-  
+
   /**
    * Certains blocs ont une visibite defini su un domaine X mais utilise un
    * theme Y.
@@ -64,7 +64,7 @@ class WbhorizondebugController extends ControllerBase {
     }
     return [];
   }
-  
+
   protected function runBatch(array $ids) {
     $batch = [
       'title' => "Delete blocs encours.",
@@ -80,10 +80,10 @@ class WbhorizondebugController extends ControllerBase {
         ]
       ];
     }
-    
+
     batch_set($batch);
   }
-  
+
   /**
    *
    * @param string $id
@@ -94,12 +94,11 @@ class WbhorizondebugController extends ControllerBase {
     if ($block) {
       $block->delete();
       $context['message'] = 'Suppresion du bloc : ' . $id;
-    }
-    else {
+    } else {
       $context['message'] = 'Le bloc : ' . $id . " n'existe plus ";
     }
   }
-  
+
   /**
    *
    * @param string $success
@@ -112,7 +111,7 @@ class WbhorizondebugController extends ControllerBase {
     else
       \Drupal::messenger()->addError("Erreur de suppression");
   }
-  
+
   /**
    * permet de deplacer third_party_settings.lesroidelareno.domain_id vers
    * third_party_settings.wb_horizon_public.domain_id
@@ -135,7 +134,7 @@ class WbhorizondebugController extends ControllerBase {
     $this->messenger()->addMessage("Mise à jour de menus : " . $k);
     return [];
   }
-  
+
   /**
    * Permet de recuperer les produits avec un discount.
    * On va essayer d'utiliser les caches de
@@ -144,7 +143,7 @@ class WbhorizondebugController extends ControllerBase {
     $this->testGetQuerieAfftectd();
     return [];
   }
-  
+
   protected function testGetQuerieAfftectd() {
     $promotion = $this->entityTypeManager()->getStorage('commerce_promotion')->load(2);
     /** @var \Drupal\affected_by_promotion\AffectedEntitiesManager $mng */
@@ -154,7 +153,7 @@ class WbhorizondebugController extends ControllerBase {
     dd($q);
     $products = $q->execute();
   }
-  
+
   /**
    * Le but est de deplacer les images du champs 'field_images' au
    * 'field_gallery' dans le produit type de vetement: vetements.
@@ -163,6 +162,7 @@ class WbhorizondebugController extends ControllerBase {
     $date = new DrupalDateTime('2023-12-01');
     $query = $this->entityTypeManager()->getStorage('commerce_product')->getQuery();
     $query->condition('created', $date->getTimestamp(), '>');
+    $query->accessCheck(FALSE);
     $ids = $query->execute();
     $results = [];
     if ($ids) {
@@ -209,10 +209,10 @@ class WbhorizondebugController extends ControllerBase {
       '#type' => 'item',
       '#markup' => $this->t('It works!')
     ];
-    
+
     return $build;
   }
-  
+
   /**
    * Permet de se rassurer que le fichier n'est pas dans le champs gallerie.
    */
@@ -223,5 +223,4 @@ class WbhorizondebugController extends ControllerBase {
     }
     return false;
   }
-  
 }

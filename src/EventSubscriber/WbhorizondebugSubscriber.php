@@ -4,22 +4,22 @@ namespace Drupal\wbhorizondebug\EventSubscriber;
 
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * wbhorizondebug event subscriber.
  */
 class WbhorizondebugSubscriber implements EventSubscriberInterface {
-  
+
   /**
    * The messenger.
    *
    * @var \Drupal\Core\Messenger\MessengerInterface
    */
   protected $messenger;
-  
+
   /**
    * Constructs event subscriber.
    *
@@ -29,27 +29,27 @@ class WbhorizondebugSubscriber implements EventSubscriberInterface {
   public function __construct(MessengerInterface $messenger) {
     $this->messenger = $messenger;
   }
-  
+
   /**
    * Kernel request event handler.
    *
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
+   * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
    *        Response event.
    */
-  public function onKernelRequest(GetResponseEvent $event) {
+  public function onKernelRequest(RequestEvent $event) {
     $this->messenger->addStatus('Module debug activée.');
   }
-  
+
   /**
    * Kernel response event handler.
    *
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
+   * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
    *        Response event.
    */
-  public function onKernelResponse(FilterResponseEvent $event) {
+  public function onKernelResponse(ResponseEvent $event) {
     // $this->messenger->addStatus(__FUNCTION__);
   }
-  
+
   /**
    *
    * {@inheritdoc}
@@ -64,5 +64,4 @@ class WbhorizondebugSubscriber implements EventSubscriberInterface {
       ]
     ];
   }
-  
 }
