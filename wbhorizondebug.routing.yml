@@ -1,4 +1,13 @@
 # recupere le json d'un contenu'.
+wbhorizondebug.test_perfomance:
+  path: '/wbhorizondebug/test-performance'
+  defaults:
+    _title: 'Move Image To Gallerie Field'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugPerformanceController::Performance'
+  requirements:
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
+# recupere le json d'un contenu'.
 wbhorizondebug.get_json_entity:
   path: '/admin/wbhorizondebug/get-json/{entity_type_id}/{id}'
   defaults:
