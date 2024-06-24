@@ -1,3 +1,12 @@
+# comprendre pourquoi certains contenus sont supprimés lors de la suppresion des autres.
+wbhorizondebug.recherche_revision:
+  path: '/wbhorizondebug/recherche-revision/{id}'
+  defaults:
+    _title: 'Move Image To Gallerie Field'
+    _controller: '\Drupal\wbhorizondebug\Controller\RechercheRevisionController::RechercheRevision'
+  requirements:
+    _role: 'administrator'
+    _permission: 'administer wbhorizondebug configuration'
 # recupere le json d'un contenu'.
 wbhorizondebug.test_perfomance:
   path: '/wbhorizondebug/test-performance'
