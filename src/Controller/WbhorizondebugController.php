@@ -12,7 +12,23 @@ use Stephane888\DrupalUtility\HttpResponse;
  * Returns responses for wbhorizondebug routes.
  */
 class WbhorizondebugController extends ControllerBase {
-
+  
+  /**
+   * Permet de tester la duplication d'un contenu traduit.
+   * Scenario :
+   * à la base on un contenu qui est en francais, on ajoute un langue (en)
+   * ensuite on souhaite transformer la version anglaise en modele.
+   * example : site_internet_entity/5685
+   */
+  public function testDuplicationContentTranslate() {
+    $entity = $this->entityTypeManager()->getStorage('site_internet_entity')->load(5685);
+    if ($entity) {
+      $code = 200;
+      $result = $entity->toArray();
+    }
+    return HttpResponse::response($result, $code);
+  }
+  
   /**
    * Permet de retourner l'entité sous forme de json tout en tenant compte de la
    * definition au niveau des paragraphes.
@@ -30,7 +46,7 @@ class WbhorizondebugController extends ControllerBase {
     }
     return HttpResponse::response($result, $code);
   }
-
+  
   /**
    * Certains blocs ont une visibite defini su un domaine X mais utilise un
    * theme Y.
@@ -49,7 +65,8 @@ class WbhorizondebugController extends ControllerBase {
         if (!in_array($theme, $visibility['domain']['domains'])) {
           $ids[] = $block->id();
           if ($action == 'see')
-            $this->messenger()->addStatus("Le block : " . $block->id() . "(" . $block->label() . ") a pour theme : " . $theme . " et pour visibilité : " . implode("; ", $visibility['domain']['domains']));
+            $this->messenger()->addStatus(
+              "Le block : " . $block->id() . "(" . $block->label() . ") a pour theme : " . $theme . " et pour visibilité : " . implode("; ", $visibility['domain']['domains']));
           $k++;
         }
       }
@@ -64,7 +81,7 @@ class WbhorizondebugController extends ControllerBase {
     }
     return [];
   }
-
+  
   protected function runBatch(array $ids) {
     $batch = [
       'title' => "Delete blocs encours.",
@@ -80,10 +97,10 @@ class WbhorizondebugController extends ControllerBase {
         ]
       ];
     }
-
+    
     batch_set($batch);
   }
-
+  
   /**
    *
    * @param string $id
@@ -94,11 +111,12 @@ class WbhorizondebugController extends ControllerBase {
     if ($block) {
       $block->delete();
       $context['message'] = 'Suppresion du bloc : ' . $id;
-    } else {
+    }
+    else {
       $context['message'] = 'Le bloc : ' . $id . " n'existe plus ";
     }
   }
-
+  
   /**
    *
    * @param string $success
@@ -111,7 +129,7 @@ class WbhorizondebugController extends ControllerBase {
     else
       \Drupal::messenger()->addError("Erreur de suppression");
   }
-
+  
   /**
    * permet de deplacer third_party_settings.lesroidelareno.domain_id vers
    * third_party_settings.wb_horizon_public.domain_id
@@ -134,7 +152,7 @@ class WbhorizondebugController extends ControllerBase {
     $this->messenger()->addMessage("Mise à jour de menus : " . $k);
     return [];
   }
-
+  
   /**
    * Permet de recuperer les produits avec un discount.
    * On va essayer d'utiliser les caches de
@@ -143,7 +161,7 @@ class WbhorizondebugController extends ControllerBase {
     $this->testGetQuerieAfftectd();
     return [];
   }
-
+  
   protected function testGetQuerieAfftectd() {
     $promotion = $this->entityTypeManager()->getStorage('commerce_promotion')->load(2);
     /** @var \Drupal\affected_by_promotion\AffectedEntitiesManager $mng */
@@ -153,7 +171,7 @@ class WbhorizondebugController extends ControllerBase {
     dd($q);
     $products = $q->execute();
   }
-
+  
   /**
    * Le but est de deplacer les images du champs 'field_images' au
    * 'field_gallery' dans le produit type de vetement: vetements.
@@ -209,10 +227,10 @@ class WbhorizondebugController extends ControllerBase {
       '#type' => 'item',
       '#markup' => $this->t('It works!')
     ];
-
+    
     return $build;
   }
-
+  
   /**
    * Permet de se rassurer que le fichier n'est pas dans le champs gallerie.
    */
