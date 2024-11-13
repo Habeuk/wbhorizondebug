@@ -82,3 +82,11 @@ wbhorizondebug.import_content_by_json:
     _form: 'Drupal\wbhorizondebug\Form\ImportContentByJsonForm'
   requirements:
     _permission: 'access content'
+
+wbhorizondebug.test_duplicate_content:
+  path: '/admin/wbhorizondebug/test_duplicate_content'
+  defaults:
+    _title: 'test Duplication Content Translate'
+    _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::testDuplicationContentTranslate'
+  requirements:
+    _permission: 'access content'	
