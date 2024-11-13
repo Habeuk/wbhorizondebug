@@ -90,3 +90,11 @@ wbhorizondebug.test_duplicate_content:
     _controller: '\Drupal\wbhorizondebug\Controller\WbhorizondebugController::testDuplicationContentTranslate'
   requirements:
     _permission: 'access content'	
+
+wbhorizondebug.add_domain:
+  path: '/wbhorizondebug/add-domain/{entity_type_id}/{entity_id}'
+  defaults:
+    _title: 'Add Domain'
+    _controller: '\Drupal\wbhorizondebug\Controller\AddDomainController'
+  requirements:
+    _permission: 'admin_default_configuration'
