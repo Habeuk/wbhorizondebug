@@ -98,3 +98,11 @@ wbhorizondebug.add_domain:
     _controller: '\Drupal\wbhorizondebug\Controller\AddDomainController'
   requirements:
     _permission: 'admin_default_configuration'
+    
+wbhorizondebug.generate_entities:
+  path: '/wbhorizondebug/generate-entities'
+  defaults:
+    _title: 'Generate Entities'
+    _controller: '\Drupal\wbhorizondebug\Controller\GenerateEntitiesController'
+  requirements:
+    _permission: 'access content'

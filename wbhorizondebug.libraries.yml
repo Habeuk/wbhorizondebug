@@ -1,0 +1,12 @@
+buildinterface:
+  css:
+    layout:
+      files/GenerateEntities/GenerateEntities.css: {}
+  js:
+    files/GenerateEntities/GenerateEntities.umd.min.js: {}
+  dependencies:
+    - wbhorizondebug/vuejs3
+
+vuejs3:
+  js:
+    https://unpkg.com/vue@3/dist/vue.global.js: { type: external, minified: true }
